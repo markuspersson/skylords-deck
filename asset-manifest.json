@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/skylords-deck/static/css/main.6a171956.chunk.css",
-    "main.js": "/skylords-deck/static/js/main.9bdfb252.chunk.js",
-    "main.js.map": "/skylords-deck/static/js/main.9bdfb252.chunk.js.map",
+    "main.js": "/skylords-deck/static/js/main.5a6a43bd.chunk.js",
+    "main.js.map": "/skylords-deck/static/js/main.5a6a43bd.chunk.js.map",
     "runtime~main.js": "/skylords-deck/static/js/runtime~main.9bd975ec.js",
     "runtime~main.js.map": "/skylords-deck/static/js/runtime~main.9bd975ec.js.map",
     "static/js/2.af59c403.chunk.js": "/skylords-deck/static/js/2.af59c403.chunk.js",
     "static/js/2.af59c403.chunk.js.map": "/skylords-deck/static/js/2.af59c403.chunk.js.map",
     "index.html": "/skylords-deck/index.html",
-    "precache-manifest.51ddffaa32c89dd99fa88ad1f8b7f68b.js": "/skylords-deck/precache-manifest.51ddffaa32c89dd99fa88ad1f8b7f68b.js",
+    "precache-manifest.0e87ca469aeb9122bac195088fa3138c.js": "/skylords-deck/precache-manifest.0e87ca469aeb9122bac195088fa3138c.js",
     "service-worker.js": "/skylords-deck/service-worker.js",
     "static/css/main.6a171956.chunk.css.map": "/skylords-deck/static/css/main.6a171956.chunk.css.map"
   }
