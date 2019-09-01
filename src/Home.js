@@ -1,12 +1,18 @@
 import React from 'react';
-import Cards from './assets/cards.json';
+import Upgrades from './assets/upgrades.json';
 import './Home.css';
+
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}
 
 class Home extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {json: '', deck: []}
+        this.state = {json: '[{"name": "Windweavers"},{"name": "Spearmen"}]', deck: []}
 
         this.textChange = this.textChange.bind(this);
         this.importDeck = this.importDeck.bind(this);
@@ -19,11 +25,14 @@ class Home extends React.Component {
     importDeck(event) {
         const deck = JSON.parse(this.state.json)
 
-        deck.forEach(deckCard => {
-            Cards.forEach(card => {
-                if (deckCard.name.toLowerCase() === card.Name.toLowerCase()) {
-                    deckCard.upgrades = card.Upgrades
-                }
+        Upgrades.forEach(upgrade => {
+            upgrade.drops.forEach(card => {
+                deck.forEach(deckCard => {
+                    if (deckCard.name.toLowerCase() === card.name.toLowerCase()) {
+                        deckCard.upgrade_map = upgrade.name
+                        deckCard.standard_only = card.standard_only
+                    }
+                })
             })
         })
 
@@ -37,46 +46,34 @@ class Home extends React.Component {
                     <tbody>
                         <tr key='-1'>
                             <td><b>Name</b></td>
-                            <td><b>Upgrade 1</b></td>
-                            <td><b>Upgrade 2</b></td>
-                            <td><b>Upgrade 3</b></td>
+                            <td><b>Map</b></td>
                         </tr>
                         {this.state.deck.map((card, i) => {
-                            return(
+                            var mapName = ""
+                            if (card.upgrade_map) {
+                                mapName = card.upgrade_map
+                            }
+                            var standardDescription = ""
+                            if (card.standard_only) {
+                                standardDescription = " (Standard only)"
+                            }
+                            
+                            return (
                                 <tr key={i}>
-                                    <td>{card.name}</td>
-                                    {card.upgrades.map((upgrade, i) => {
-                                        var difficulty = ''
-                                        var mapName = '-'
-
-                                        if (upgrade.Map != null) {
-                                            mapName = upgrade.Map.Name
-
-                                            if (upgrade.Map.Difficulty === 0) {
-                                                difficulty = '(Standard)'
-                                            } else if (upgrade.Map.Difficulty === 1) {
-                                                difficulty = '(Advanced)'
-                                            } else if (upgrade.Map.Difficulty === 2) {
-                                                difficulty = '(Expert)'
-                                            }
-                                        }
-                                        
-                                        return(
-                                            <td key={i}>{mapName} {difficulty}</td>
-                                        )
-                                    })}
+                                    <td>{toTitleCase(card.name)}</td>
+                                    <td>{toTitleCase(mapName)}{standardDescription}</td>
                                 </tr>
                             )
-                        })}                        
+                        })}
                     </tbody>
                 </table>
             );
         }
 
         return (
-            <div class='center'>
+            <div className='center'>
                 <h1>Import your deck</h1>
-                <textarea class='textarea' onChange={this.textChange} />
+                <textarea className='textarea' value={this.state.json} onChange={this.textChange} />
                 <div>
                     <button onClick={this.importDeck}>Import</button>
                 </div>
