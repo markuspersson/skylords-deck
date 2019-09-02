@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5652ee63e453734fec5433dbadb02079",
+    "revision": "65afbcfde9b7b98c49a74815009382ed",
     "url": "/skylords-deck/index.html"
   },
   {
-    "revision": "4b0d1769951eb03434cb",
+    "revision": "0936fa228e3bcdad6df0",
     "url": "/skylords-deck/static/css/main.6a171956.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/skylords-deck/static/js/2.a7a52e19.chunk.js"
   },
   {
-    "revision": "4b0d1769951eb03434cb",
-    "url": "/skylords-deck/static/js/main.5bef3e38.chunk.js"
+    "revision": "0936fa228e3bcdad6df0",
+    "url": "/skylords-deck/static/js/main.75b4d68d.chunk.js"
   },
   {
     "revision": "1933ed29aabac44c1794",

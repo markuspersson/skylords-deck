@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/skylords-deck/precache-manifest.8f121cfaa9747b5118e08f2c0acbc64e.js"
+  "/skylords-deck/precache-manifest.6472d83d6d1a3924c797b73901405d25.js"
 );
 
 self.addEventListener('message', (event) => {
