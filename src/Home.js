@@ -1,4 +1,5 @@
 import React from 'react';
+import Cards from './assets/cards.json'
 import Upgrades from './assets/upgrades.json';
 import './Home.css';
 
@@ -25,11 +26,21 @@ class Home extends React.Component {
     importDeck(event) {
         const deck = JSON.parse(this.state.json)
 
+        Cards.forEach(card => {
+            deck.forEach(deckCard => {
+                if (deckCard.name.toLowerCase() === card.Name.toLowerCase()) {
+                    deckCard.image_name = card.Image.Name
+                    deckCard.image_url = 'https://cardbase.skylords.eu' + card.Image.Url
+                }
+            })
+        })
+
         Upgrades.forEach(upgrade => {
             upgrade.drops.forEach(card => {
                 deck.forEach(deckCard => {
                     if (deckCard.name.toLowerCase() === card.name.toLowerCase()) {
                         deckCard.upgrade_map = upgrade.name
+                        deckCard.players = upgrade.number_of_players
                         deckCard.standard_only = card.standard_only
                     }
                 })
@@ -50,8 +61,10 @@ class Home extends React.Component {
                         </tr>
                         {this.state.deck.map((card, i) => {
                             var mapName = ""
+                            var players = ""
                             if (card.upgrade_map) {
                                 mapName = card.upgrade_map
+                                players = " (" + card.players + ")"
                             }
                             var standardDescription = ""
                             if (card.standard_only) {
@@ -60,8 +73,9 @@ class Home extends React.Component {
                             
                             return (
                                 <tr key={i}>
+                                    {/*<td><img src={card.image_url} alt={card.image_name}/></td>*/}
                                     <td>{toTitleCase(card.name)}</td>
-                                    <td>{toTitleCase(mapName)}{standardDescription}</td>
+                                    <td>{toTitleCase(mapName)}{players}{standardDescription}</td>
                                 </tr>
                             )
                         })}
