@@ -29,6 +29,7 @@ class Home extends React.Component {
         Cards.forEach(card => {
             deck.forEach(deckCard => {
                 if (deckCard.name.toLowerCase() === card.Name.toLowerCase()) {
+                    // TODO: need to fix the correct image if multiple factions
                     deckCard.image_name = card.Image.Name
                     deckCard.image_url = 'https://cardbase.skylords.eu' + card.Image.Url
                 }
@@ -38,7 +39,19 @@ class Home extends React.Component {
         Upgrades.forEach(upgrade => {
             upgrade.drops.forEach(card => {
                 deck.forEach(deckCard => {
+                    var found = false
+
                     if (deckCard.name.toLowerCase() === card.name.toLowerCase()) {
+                        if (deckCard.faction) {
+                            if (deckCard.faction.toLowerCase() === card.faction.toLowerCase()) {
+                                found = true
+                            } 
+                        } else {
+                            found = true
+                        }
+                    }
+
+                    if (found) {
                         deckCard.upgrade_map = upgrade.name
                         deckCard.players = upgrade.number_of_players
                         deckCard.standard_only = card.standard_only
@@ -53,7 +66,7 @@ class Home extends React.Component {
     render() {
         if (this.state.deck.length > 0) {
             return (
-                <table class='center'>
+                <table className='center'>
                     <tbody>
                         <tr key='-1'>
                             <td><b>Name</b></td>
