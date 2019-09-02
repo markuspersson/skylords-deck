@@ -73,8 +73,14 @@ class Home extends React.Component {
                             <td><b>Map</b></td>
                         </tr>
                         {this.state.deck.map((card, i) => {
+                            var faction = ""
                             var mapName = ""
                             var players = ""
+
+                            if (card.faction) {
+                                faction = " (" + card.faction + ")"
+                            }
+
                             if (card.upgrade_map) {
                                 mapName = card.upgrade_map
                                 players = " (" + card.players + ")"
@@ -87,7 +93,7 @@ class Home extends React.Component {
                             return (
                                 <tr key={i}>
                                     {/*<td><img src={card.image_url} alt={card.image_name}/></td>*/}
-                                    <td>{toTitleCase(card.name)}</td>
+                                    <td>{toTitleCase(card.name)}{toTitleCase(faction)}</td>
                                     <td>{toTitleCase(mapName)}{players}{standardDescription}</td>
                                 </tr>
                             )
